@@ -18,3 +18,15 @@ FROM actors
 JOIN roles ON actors.id = roles.actor_id
 GROUP BY actors.id, actors.first_name, actors.last_name
 HAVING COUNT(roles.movie_id) > 5;
+
+--mendapatkan directors paling produktif sepanjang masa
+SELECT
+    directors.id AS directors_id,
+    directors.first_name,
+    directors.last_name,
+    COUNT(movies_directors.movie_id) AS produktif
+FROM directors
+JOIN movies_directors ON directors.id = movies_directors.director_id
+GROUP BY directors.id, directors.first_name, directors.last_name
+ORDER BY produktif DESC
+LIMIT 1;
