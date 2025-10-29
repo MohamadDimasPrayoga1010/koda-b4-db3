@@ -30,3 +30,12 @@ JOIN movies_directors ON directors.id = movies_directors.director_id
 GROUP BY directors.id, directors.first_name, directors.last_name
 ORDER BY produktif DESC
 LIMIT 1;
+
+--mendapatkan tahun tersibuk sepanjang masa
+SELECT
+    movies.year AS tahun,
+    COUNT(movies.id) AS number_of_films
+FROM movies
+GROUP BY movies.year
+ORDER BY number_of_films DESC
+LIMIT 1;
