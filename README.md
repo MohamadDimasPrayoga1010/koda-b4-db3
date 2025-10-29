@@ -4,12 +4,20 @@
 ```mermaid
 erDiagram
 
+
+
+roles{
+    bigint actor_id
+    bigint movie_id
+    varchar(100) role
+}
 movies{
     bigint id
     varchar(100) name
     bigint year
     double rankscore
 }
+
 
 directors{
     bigint id
@@ -29,11 +37,6 @@ actors{
     char(1) gender
 }
 
-roles{
-    bigint actor_id
-    bigint movie_id
-    varchar(100) role
-}
 
 director_genres{
     biging director_id
@@ -49,13 +52,13 @@ movies_directors{
 
 
 
-
+movies ||--o{ roles : "played"
 directors ||--o{ movies_directors : "directs"
 movies ||--o{ movies_directors : "directed_by"
 directors ||--o{ director_genres : "prefers"
 movies ||--o{ movies_genres : "genre"
 actors ||--o{ roles : "plays"
-movies ||--o{ roles : "played"
+
 
 
 
