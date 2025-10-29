@@ -39,3 +39,12 @@ FROM movies
 GROUP BY movies.year
 ORDER BY number_of_films DESC
 LIMIT 1;
+
+--mendapatkan movies dengan genres yang di buatkan menjadi 1 column(value dipisahkan dengan comma) dengan menggunakan string_agg. 
+SELECT 
+    movies.id,
+    movies.name,
+    string_agg(movies_genres.genre, ', ') AS genre_movie
+FROM movies
+JOIN movies_genres ON movies.id = movies_genres.movie_id
+GROUP BY movies.id, movies.name;
